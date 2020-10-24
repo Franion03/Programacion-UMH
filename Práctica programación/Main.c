@@ -71,14 +71,14 @@ int main(int argc, char* argv[]){
                 }
             }
 
-            else if(strcmp(ptr[2], "cuenta")==0){
+            else if(strcmp(ptr[2], "fechas")==0){
                 if(numTok <3){
                     Error();
                     return 0;
                 }
             }
 
-            else if(strcmp(ptr[2], "cuenta")==0){
+            else if(strcmp(ptr[2], "remplazar")==0){
                 if(numTok <3){
                     Error();
                     return 0;
