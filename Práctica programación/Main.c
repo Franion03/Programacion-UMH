@@ -1,17 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "lib.h"
 
 
 int main(int argc, char* argv[]){
-
     int numTok;
-    char ptr[1000];
+    char *ptr[1000];
     char comando[1000];
-    char prog="prog";
+    char *prog="prog";
 
     while(1){
         gets(comando);
         Trim(comando);
+        if(comando==NULL || comando[0]=='\0')
+            continue;
         numTok=0;
         ptr[numTok]=strtok (comando, " \n\t");
         numTok++;
@@ -19,21 +24,71 @@ int main(int argc, char* argv[]){
         {
             numTok++;   
         }
+        if(strcmp(ptr[0],"Exit")==0){
+            break;
+        }
 
         if(strcmp(ptr[0],prog)==0   ){
-            printf("%s\n",prog);
-            printf("%s info\n",prog);
-            printf("%s fichero cuenta palabra1 [palabra2] [palabra3] [palabra4] ...\n",prog);
-            printf("%s fichero busca fichero2\n",prog);
-            printf("%s fichero numeros\n",prog);
-            printf("%s fichero fechas\n",prog);
-            printf("%s fichero remplazar palabra1 palabra2\n",prog);
+            
+            if(numTok==1){    
+                printf("%s\n",prog);
+                printf("%s info\n",prog);
+                printf("%s fichero cuenta palabra1 [palabra2] [palabra3] [palabra4] ...\n",prog);
+                printf("%s fichero busca fichero2\n",prog);
+                printf("%s fichero numeros\n",prog);
+                printf("%s fichero fechas\n",prog);
+                printf("%s fichero remplazar palabra1 palabra2\n",prog);
+                printf("Exit\n");
+            }
+
+            else if(strcmp(ptr[1], "info")==0){
+                if(numTok!=2){
+                    Error();
+                    return 0;
+                }
+                printf("Nombre:Francisco Javier Quiles Ruiz\n");
+                printf("Gmail:francisco.quiles05@goumh.umh.es\n");
+            }
+            
+            else if(strcmp(ptr[2], "cuenta")==0){
+                if(numTok <3){
+                    Error();
+                    return 0;
+                }
+            }
+
+            else if(strcmp(ptr[2], "busca")==0){
+                if(numTok <3){
+                    Error();
+                    return 0;
+                }
+            }
+
+            else if(strcmp(ptr[2], "numeros")==0){
+                if(numTok <3){
+                    Error();
+                    return 0;
+                }
+            }
+
+            else if(strcmp(ptr[2], "cuenta")==0){
+                if(numTok <3){
+                    Error();
+                    return 0;
+                }
+            }
+
+            else if(strcmp(ptr[2], "cuenta")==0){
+                if(numTok <3){
+                    Error();
+                    return 0;
+                }
+            }
+
+            else Error();
         }
 
-        else if(strcmp(ptr[1], prog)==0){
-            printf("Nombre:Francisco Javier Quiles Ruiz");
-            printf("Gmail:francisco.quiles05@goumh.umh.es");
-        }
+        
     }
     printf("FIN\n" );
     return 0;

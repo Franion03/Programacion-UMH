@@ -1,9 +1,11 @@
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "lib.h"
 
 
 
-void Trim(char *cad)
-{
+void Trim(char *cad){
     int c, i, j;
     int  n=strlen(cad);
     if( cad == NULL || n<1 )
@@ -20,6 +22,6 @@ void Trim(char *cad)
 }
 
 void Error(){
-    println("Error parametros incorrectos");
+    printf("Error parametros incorrectos\n");
     return;
 }
