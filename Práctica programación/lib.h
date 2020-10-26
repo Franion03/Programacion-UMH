@@ -6,7 +6,7 @@
 
 void Trim(char *cad);
 void Error();
-
+int ContarToken( char * fichero, char *palabra, char *sep);
 
 
 

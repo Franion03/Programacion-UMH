@@ -18,9 +18,9 @@ int main(int argc, char* argv[]){
         if(comando==NULL || comando[0]=='\0')
             continue;
         numTok=0;
-        ptr[numTok]=strtok (comando, " \n\t");
+        ptr[numTok]=strtok (comando, " \n\t,.;:()[]");
         numTok++;
-        while( (ptr[numTok] = strtok( NULL, " \n\t")) != NULL)
+        while( (ptr[numTok] = strtok( NULL, " \n\t,.;:()[]")) != NULL)
         {
             numTok++;   
         }
@@ -44,50 +44,51 @@ int main(int argc, char* argv[]){
             else if(strcmp(ptr[1], "info")==0){
                 if(numTok!=2){
                     Error();
-                    return 0;
+                    continue;
                 }
                 printf("Nombre:Francisco Javier Quiles Ruiz\n");
                 printf("Gmail:francisco.quiles05@goumh.umh.es\n");
             }
             
             else if(strcmp(ptr[2], "cuenta")==0){
-                if(numTok <3){
+                if(numTok <4){
                     Error();
-                    return 0;
+                    continue;
                 }
+
             }
 
             else if(strcmp(ptr[2], "busca")==0){
                 if(numTok <3){
                     Error();
-                    return 0;
+                    continue;
                 }
             }
 
             else if(strcmp(ptr[2], "numeros")==0){
                 if(numTok <3){
                     Error();
-                    return 0;
+                    continue;
                 }
             }
 
             else if(strcmp(ptr[2], "fechas")==0){
                 if(numTok <3){
                     Error();
-                    return 0;
+                    continue;
                 }
             }
 
             else if(strcmp(ptr[2], "remplazar")==0){
                 if(numTok <3){
                     Error();
-                    return 0;
+                    continue;
                 }
             }
 
             else Error();
         }
-
+        else Error();
         
     }
     printf("FIN\n" );
