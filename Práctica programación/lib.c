@@ -28,17 +28,17 @@ void Error(){
 
 int ContarToken( char * fichero, char *palabra, char *sep){
     FILE *f=fopen(fichero,"r");
-    char* linea[1000];
+    char linea[1000];
     int tamSep=strlen(sep);
     char *p1,*p2;
     int numeroTokens=0;
     if(f==NULL){
-        printf("Error, no se ha especificado fichero, usa antes el comando 'Datos'\n");
+        printf("Error, no se ha especificado fichero\n");
         fclose(f);
         return 0;
     }
     
-    while(feof){
+    while(!feof(f)){
         fgets(linea,10000,f);
         p2=strstr(linea,sep);
         while(p2!=NULL){

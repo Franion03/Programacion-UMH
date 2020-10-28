@@ -7,20 +7,23 @@
 
 
 int main(int argc, char* argv[]){
+
     int numTok;
     char *ptr[1000];
     char comando[1000];
     char *prog="prog";
-
+    char *sepf=" \n\t,.;:()[]";
+    char *sep=" ";
+    int aux;
     while(1){
         gets(comando);
         Trim(comando);
         if(comando==NULL || comando[0]=='\0')
             continue;
         numTok=0;
-        ptr[numTok]=strtok (comando, " \n\t,.;:()[]");
+        ptr[numTok]=strtok (comando, " \n\t");
         numTok++;
-        while( (ptr[numTok] = strtok( NULL, " \n\t,.;:()[]")) != NULL)
+        while( (ptr[numTok] = strtok( NULL, " \n\t")) != NULL)
         {
             numTok++;   
         }
@@ -53,9 +56,13 @@ int main(int argc, char* argv[]){
             else if(strcmp(ptr[2], "cuenta")==0){
                 if(numTok <4){
                     Error();
+                    printf("%i",numTok);
                     continue;
                 }
-
+                for (int i=3;i<numTok;i++){
+                    aux=ContarToken(ptr[1],ptr[i],sepf);
+                    printf("la palabra %s se repite %i veces\n",ptr[i],aux);
+                }
             }
 
             else if(strcmp(ptr[2], "busca")==0){
@@ -86,9 +93,11 @@ int main(int argc, char* argv[]){
                 }
             }
 
-            else Error();
+            else {
+                printf("%s",ptr[1]);
+                Error();
+            }
         }
-        else Error();
         
     }
     printf("FIN\n" );
