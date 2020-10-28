@@ -54,9 +54,9 @@ int ContarToken( char * fichero, char *palabra, char *sep){
 }
 
 void Buscar(char *file, char *ficheroB,char *sep){
-    char palabras[100000];
     char linea[10000];
     char *p2;
+    int i, numPalabras=100000;
     FILE *fich=(file,"r");
     if(fich==NULL){
         printf("Error, no se ha especificado fichero\n");
@@ -70,17 +70,38 @@ void Buscar(char *file, char *ficheroB,char *sep){
         fclose(fichB);
         return 0;
     }
-
+    char **palabras=malloc(sizeof(char*)*numPalabras);
+    //Recorremos el segundo fichero en busca de las palabras
     while(!feof(fichB)){
         fgets(linea,10000,fichB);
         p2=strtok(linea,sep);
         while(p2!=NULL){
-            if(strcmp(palabra,p2)==0){
-                numeroTokens++;
+            //comprobamos si la palabra existe en el array de palabras a buscar
+            for (i=0;i<numPalabras;i++){
+                if(strcmp(palabras[i],p2)==0){
+                   break;
+                }
+                else
+                    palabras = strdup(p2);
             }
             p2=strtok(NULL,sep);
         }
 
     }
+    fclose(fichB);
+
+
+    //Combrobamos las veces que se repiten los caracteres en el otro fichero
+
+
+
+
+
+
+
+
+
+
+    //Liberamos memoria
     
 }
