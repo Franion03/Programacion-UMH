@@ -30,7 +30,7 @@ int ContarToken( char * fichero, char *palabra, char *sep){
     FILE *f=fopen(fichero,"r");
     char linea[1000];
     int tamSep=strlen(sep);
-    char *p1,*p2;
+    char *p2;
     int numeroTokens=0;
     if(f==NULL){
         printf("Error, no se ha especificado fichero\n");
@@ -40,18 +40,47 @@ int ContarToken( char * fichero, char *palabra, char *sep){
     
     while(!feof(f)){
         fgets(linea,10000,f);
-        p2=strstr(linea,sep);
+        p2=strtok(linea,sep);
         while(p2!=NULL){
             if(strcmp(palabra,p2)==0){
-                printf("He40y");
                 numeroTokens++;
             }
-            printf("Hey");
-            p1=p2+tamSep;
-            p2=strstr(p1,sep);
+            p2=strtok(NULL,sep);
         }
 
     }
     fclose(f);
     return numeroTokens;
+}
+
+void Buscar(char *file, char *ficheroB,char *sep){
+    char palabras[100000];
+    char linea[10000];
+    char *p2;
+    FILE *fich=(file,"r");
+    if(fich==NULL){
+        printf("Error, no se ha especificado fichero\n");
+        fclose(fich);
+        return 0;
+    }
+
+    FILE *fichB=(ficheroB,"r");
+        if(fichB==NULL){
+        printf("Error, no se ha especificado fichero\n");
+        fclose(fichB);
+        return 0;
+    }
+
+    while(!feof(fichB)){
+        fgets(linea,10000,fichB);
+        p2=strtok(linea,sep);
+        while(p2!=NULL){
+            if(strcmp(palabra,p2)==0){
+                numeroTokens++;
+            }
+            p2=strtok(NULL,sep);
+        }
+
+    }
+    
 }

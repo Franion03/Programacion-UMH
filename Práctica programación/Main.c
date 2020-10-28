@@ -70,6 +70,7 @@ int main(int argc, char* argv[]){
                     Error();
                     continue;
                 }
+                Buscar (ptr[1],ptr[3],sepf);
             }
 
             else if(strcmp(ptr[2], "numeros")==0){
