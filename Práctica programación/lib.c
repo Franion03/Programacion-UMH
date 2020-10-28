@@ -43,8 +43,10 @@ int ContarToken( char * fichero, char *palabra, char *sep){
         p2=strstr(linea,sep);
         while(p2!=NULL){
             if(strcmp(palabra,p2)==0){
+                printf("He40y");
                 numeroTokens++;
             }
+            printf("Hey");
             p1=p2+tamSep;
             p2=strstr(p1,sep);
         }
