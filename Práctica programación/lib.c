@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "lib.h"
 
 
@@ -55,53 +56,72 @@ int ContarToken( char * fichero, char *palabra, char *sep){
 
 void Buscar(char *file, char *ficheroB,char *sep){
     char linea[10000];
-    char *p2;
-    int i, numPalabras=100000;
-    FILE *fich=(file,"r");
-    if(fich==NULL){
-        printf("Error, no se ha especificado fichero\n");
-        fclose(fich);
-        return 0;
-    }
+    char *p2,*p1;
+    int i, numPalabras=0,numTokens;
 
-    FILE *fichB=(ficheroB,"r");
+
+    FILE *fichB=fopen(ficheroB,"r");
         if(fichB==NULL){
         printf("Error, no se ha especificado fichero\n");
         fclose(fichB);
-        return 0;
+        return ;
     }
-    char **palabras=malloc(sizeof(char*)*numPalabras);
+    char **palabras=malloc(sizeof(char*)*1000);
     //Recorremos el segundo fichero en busca de las palabras
     while(!feof(fichB)){
         fgets(linea,10000,fichB);
         p2=strtok(linea,sep);
         while(p2!=NULL){
             //comprobamos si la palabra existe en el array de palabras a buscar
-            for (i=0;i<numPalabras;i++){
-                if(strcmp(palabras[i],p2)==0){
-                   break;
-                }
-                else
-                    palabras = strdup(p2);
+            if(!BuscarArray(palabras,p2,numPalabras)){
+                palabras[numPalabras] = strdup(p2);
+                numPalabras++;
             }
             p2=strtok(NULL,sep);
         }
 
     }
     fclose(fichB);
-
+    FILE *fich=fopen(file,"r");
+    if(fich==NULL){
+        printf("Error, no se ha especificado fichero\n");
+        fclose(fich);
+        return ;
+    }
 
     //Combrobamos las veces que se repiten los caracteres en el otro fichero
+    for (i=0;i<numPalabras;i++){
+        fseek(fich,0,SEEK_SET);
+        numTokens=0;
+        while (!feof(fich)){
+            fgets(linea ,10000,fich);
+            p1=strtok(linea,sep);
+            while(p1!=NULL){
+                if(strcmp(palabras[i],p1)==0){
+                    numTokens++;
+                }
+                p1=strtok(NULL,sep);
+            }
 
-
-
-
-
-
-
-
-
-
+        }
+        printf("La palabra %s se repite %i veces\n",palabras[i],numTokens);
+    }
+    fclose(fich);
     //Liberamos memoria
+    for (i=0;i<numPalabras;i++){
+        free(palabras[i]);
+    }
+    free(palabras);
     
 }
+
+bool BuscarArray(char*palabras[], char* palabra,int nPalabras){
+    for (int i=0;i<nPalabras;i++){
+        if(strcmp(palabras[i],palabra)==0){
+            return true;
+        }
+    }
+    return false;
+
+}
+
