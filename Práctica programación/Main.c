@@ -14,6 +14,7 @@ int main(int argc, char* argv[]){
     char *prog="prog";
     char *sepf=" \n\t,.;:()[]";
     char *sep=" ";
+    char *sepn=" \n\t,;:()[]";
     int aux;
     while(1){
         gets(comando);

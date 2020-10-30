@@ -125,3 +125,41 @@ bool BuscarArray(char*palabras[], char* palabra,int nPalabras){
 
 }
 
+int FechaValida(char *cadena)
+{
+	
+  int i, d, m, a;
+  int error;
+
+  
+  
+  	a=(cadena[0]-'0')*1000 +(cadena[1]-'0')*100+(cadena[2]-'0')*10+ (cadena[3]-'0');
+    m=(cadena[5]-'0')*10 +(cadena[6]-'0');
+    d=(cadena[8]-'0')*10 +(cadena[9]-'0');
+    
+   error=0;
+   for (i=0; i<10; i++)
+    {
+        if(i!=4 && i!=7)
+        {
+            if ((cadena[i]<'0' || cadena [i]>'9') && cadena[i]!='/' /*|| cadena[i]!='-')*/)
+            error=1;
+        }
+
+    }
+    if (error==1)
+       return 0;
+    else if (strlen(cadena)!=10)
+       return 0;
+    else if(d<1 || m<1 || a<1 || d>31 || m>12 || a>9999 )
+       return 0;
+    else if((m==4 || m==6 || m==9|| m==11) && d>30)
+       return 0;
+    else if (m==2 && a%4==0 && d>29)
+       return 0;
+    else if (m==2 && a%4!=0 && d>28)
+       return 0;
+    else 
+       return 1;
+} 
+

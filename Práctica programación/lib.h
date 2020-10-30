@@ -10,6 +10,7 @@ void Error();
 int ContarToken( char * fichero, char *palabra, char *sep);
 void Buscar(char * file, char *ficheroB, char *sep);
 bool BuscarArray(char*palabras[], char* palabra, int nPalabras);
+int FechaValida(char *cadena);//devuelve 1 si la fecha es válidaw
 
 
 
