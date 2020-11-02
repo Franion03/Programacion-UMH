@@ -73,12 +73,13 @@ int main(int argc, char* argv[]){
                 }
                 Buscar (ptr[1],ptr[3],sepf);
             }
-
+    
             else if(strcmp(ptr[2], "numeros")==0){
-                if(numTok <3){
+                if(numTok !=3){
                     Error();
                     continue;
                 }
+                Numeros(ptr[1],sepn);
             }
 
             else if(strcmp(ptr[2], "fechas")==0){

@@ -61,7 +61,7 @@ void Buscar(char *file, char *ficheroB,char *sep){
 
 
     FILE *fichB=fopen(ficheroB,"r");
-        if(fichB==NULL){
+    if(fichB==NULL){
         printf("Error, no se ha especificado fichero\n");
         fclose(fichB);
         return ;
@@ -163,3 +163,64 @@ int FechaValida(char *cadena)
        return 1;
 } 
 
+void Numeros(char*file, char*sep){
+    FILE *f=fopen(file,"r");
+    int numPos=0, numNeg=0, numEnt=0, numReal=0, i, cont=0;
+    char linea[10000];
+    char *p;
+
+    if(f==NULL){
+        printf("Error, no se ha especificado fichero\n");
+        fclose(f);
+        return ;
+    }
+// recorremos la totalidad del fichero
+    while(!feof(f)){
+        fgets(linea,10000,f);
+        p=strtok(linea,sep);
+        //Comprobamos cada token de la linea
+        while(p!=NULL){
+            //comprobamos si el token es negativo
+            if(p[0] == '-'){
+                for( i = 1 ; i < strlen(p) ; i++ ){
+                    if((p[i] < '0' || p[i] > '9') && p[i] != '.'){
+            
+                     break;
+                    }
+                    else if(p[i]=='.'){
+                    cont++;   
+                    }
+                }
+                if(cont==0 && i==strlen(p)){
+                    numNeg++;
+                    numEnt++;
+                }
+                else if(cont==1 && i==strlen(p)){
+                    numNeg++;
+                    numReal++;
+                }
+            }
+            else {
+                for(i=0;i<strlen(p);i++){
+                    if((p[i] < '0' || p[i] > '9') && p[i] != '.'){
+                        
+                     break;
+                    }
+                    else if(p[i]=='.'){
+                    cont++;   
+                    }
+                }
+                if(cont==0 && i==strlen(p)){
+                    numPos++;
+                    numEnt++;
+                }
+                else if(cont==1 && i==strlen(p)){
+                    numPos++;
+                    numReal++;
+                }
+            }
+            p=strtok(NULL,sep);
+        }
+    }
+    printf("Existen %i numeros negativos, %i numeros positivos, %i numeros enteros , %i numeros reales \n",numNeg,numPos,numEnt,numReal);
+}
