@@ -16,7 +16,7 @@ int main(int argc, char* argv[]){
     char *sep=" ";
     char *sepn=" \n\t,;:()[]";
     int aux;
-    while(1){
+   /* while(1){
         gets(comando);
         Trim(comando);
         if(comando==NULL || comando[0]=='\0')
@@ -27,83 +27,81 @@ int main(int argc, char* argv[]){
         while( (ptr[numTok] = strtok( NULL, " \n\t")) != NULL)
         {
             numTok++;   
-        }
-        if(strcmp(ptr[0],"Exit")==0){
-            break;
-        }
+        }*/
 
-        if(strcmp(ptr[0],prog)==0   ){
+
+
             
-            if(numTok==1){    
-                printf("%s\n",prog);
-                printf("%s info\n",prog);
-                printf("%s fichero cuenta palabra1 [palabra2] [palabra3] [palabra4] ...\n",prog);
-                printf("%s fichero busca fichero2\n",prog);
-                printf("%s fichero numeros\n",prog);
-                printf("%s fichero fechas\n",prog);
-                printf("%s fichero remplazar palabra1 palabra2\n",prog);
+            if(argc==1){    
+                printf("%s\n",argv[0]);
+                printf("%s info\n",argv[0]);
+                printf("%s fichero cuenta palabra1 [palabra2] [palabra3] [palabra4] ...\n",argv[0]);
+                printf("%s fichero busca fichero2\n",argv[0]);
+                printf("%s fichero numeros\n",argv[0]);
+                printf("%s fichero fechas\n",argv[0]);
+                printf("%s fichero remplazar palabra1 palabra2\n",argv[0]);
                 printf("Exit\n");
             }
 
-            else if(strcmp(ptr[1], "info")==0){
-                if(numTok!=2){
+            else if(strcmp(argv[1], "info")==0){
+                if(argc!=2){
                     Error();
-                    continue;
+                    return 0;;
                 }
                 printf("Nombre:Francisco Javier Quiles Ruiz\n");
                 printf("Gmail:francisco.quiles05@goumh.umh.es\n");
             }
             
-            else if(strcmp(ptr[2], "cuenta")==0){
-                if(numTok <4){
+            else if(strcmp(argv[2], "cuenta")==0){
+                if(argc <4){
                     Error();
-                    printf("%i",numTok);
-                    continue;
+                    return 0;;
                 }
-                for (int i=3;i<numTok;i++){
-                    aux=ContarToken(ptr[1],ptr[i],sepf);
-                    printf("la palabra %s se repite %i veces\n",ptr[i],aux);
+                for (int i=3;i<argc;i++){
+                    aux=ContarToken(argv[1],argv[i],sepf);
+                    printf("la palabra %s se repite %i veces\n",argv[i],aux);
                 }
             }
 
-            else if(strcmp(ptr[2], "busca")==0){
-                if(numTok <3){
+            else if(strcmp(argv[2], "busca")==0){
+                if(argc <3){
                     Error();
-                    continue;
+                    return 0;;
                 }
-                Buscar (ptr[1],ptr[3],sepf);
+                Buscar (argv[1],argv[3],sepf);
             }
 
-            else if(strcmp(ptr[2], "numeros")==0){
-                if(numTok !=3){
+            else if(strcmp(argv[2], "numeros")==0){
+                if(argc !=3){
                     Error();
-                    continue;
+                    return 0;;
                 }
-                Numeros(ptr[1],sepn);
+                Numeros(argv[1],sepn);
             }
 
-            else if(strcmp(ptr[2], "fechas")==0){
-                if(numTok <3){
+            else if(strcmp(argv[2], "fechas")==0){
+                if(argc <3){
                     Error();
-                    continue;
+                    return 0;;
                 }
-                BuscarFechas(ptr[1],sepf);
+                BuscarFechas(argv[1],sepf);
             }
 
-            else if(strcmp(ptr[2], "remplazar")==0){
-                if(numTok !=5){
+            else if(strcmp(argv[2], "remplazar")==0){
+                if(argc !=5){
                     Error();
-                    continue;
+                    return 0;;
                 }
+            ReemplazarDatos(argv[1],argv[3],argv[4],sepf);
                 
             }
 
             else {
                 Error();
             }
-        }
         
-    }
+        
+    
     printf("FIN\n" );
     return 0;
 }

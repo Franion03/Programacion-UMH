@@ -29,7 +29,7 @@ void Error(){
 
 int ContarToken( char * fichero, char *palabra, char *sep){
     FILE *f=fopen(fichero,"r");
-    char linea[1000];
+    char linea[10000];
     int tamSep=strlen(sep);
     char *p2;
     int numeroTokens=0;
@@ -41,6 +41,7 @@ int ContarToken( char * fichero, char *palabra, char *sep){
     
     while(!feof(f)){
         fgets(linea,10000,f);
+        Trim(linea);
         p2=strtok(linea,sep);
         while(p2!=NULL){
             if(strcmp(palabra,p2)==0){
@@ -70,6 +71,7 @@ void Buscar(char *file, char *ficheroB,char *sep){
     //Recorremos el segundo fichero en busca de las palabras
     while(!feof(fichB)){
         fgets(linea,10000,fichB);
+        Trim(linea);
         p2=strtok(linea,sep);
         while(p2!=NULL){
             //comprobamos si la palabra existe en el array de palabras a buscar
@@ -95,6 +97,7 @@ void Buscar(char *file, char *ficheroB,char *sep){
         numTokens=0;
         while (!feof(fich)){
             fgets(linea ,10000,fich);
+            Trim(linea);
             p1=strtok(linea,sep);
             while(p1!=NULL){
                 if(strcmp(palabras[i],p1)==0){
@@ -177,6 +180,7 @@ void Numeros(char*file, char*sep){
 // recorremos la totalidad del fichero
     while(!feof(f)){
         fgets(linea,10000,f);
+        Trim(linea);
         p=strtok(linea,sep);
         //Comprobamos cada token de la linea
         while(p!=NULL){
@@ -241,6 +245,7 @@ void BuscarFechas(char *file, char *sep){
 
     while (!feof(f)){
         fgets(linea,10000,f);
+        Trim(linea);
         p=strtok(linea,sep);
         while(p!=NULL){
             if(FechaValida(p)==1){
@@ -251,4 +256,45 @@ void BuscarFechas(char *file, char *sep){
     }
     fclose(f);
     printf("existen %i fechas validas para el formato:DD/MM/AAAA \n",nfechas);
+}
+
+void ReemplazarDatos(char *file,char *palabra1, char *palabra2, char *sep){
+    FILE *f=fopen(file,"r");
+    char linea[10000];
+    char *p;
+
+    if(f==NULL){
+        printf("Error, no se ha especificado fichero\n");
+        fclose(f);
+        return ;
+    }
+    //Comprobamos el nombre del fichero si el último grupo de carcteres es (numero) se cambia por numero++
+    char*nuevof="Hey";
+    char*numero;
+    int n,numCambios=0;
+    if(1==0){
+        n=atoi(numero);
+        n=n++;
+       // nuevof=strcat("()");
+    }
+    else strcpy(nuevof,strcat(file,"(1)"));
+    //Creamos el nuevo fichero y lo recorremos con las palabras para encontrar la deseada
+    FILE *fn=fopen(nuevof,"w");
+    while(!feof(f)){
+        fgets(linea,10000,f);
+        Trim(linea);
+        p=strtok(linea,sep);
+        while(p!=NULL){
+            if(strcmp(palabra1,p)==0){
+                fprintf(fn,"%s%c",palabra2,p[strlen(p)]);
+                numCambios++;
+            }
+            else fprintf(fn,"%s",p);
+            p=strtok(NULL,sep);
+        }
+        fprintf(fn,"\n");   
+    }
+    fclose(f);
+    fclose(fn);
+    printf("la palabra %s se ha cambiado por %s , %i veces\n",palabra1,palabra2,numCambios);
 }
