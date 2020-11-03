@@ -73,7 +73,7 @@ int main(int argc, char* argv[]){
                 }
                 Buscar (ptr[1],ptr[3],sepf);
             }
-    
+
             else if(strcmp(ptr[2], "numeros")==0){
                 if(numTok !=3){
                     Error();
@@ -87,17 +87,18 @@ int main(int argc, char* argv[]){
                     Error();
                     continue;
                 }
+                BuscarFechas(ptr[1],sepf);
             }
 
             else if(strcmp(ptr[2], "remplazar")==0){
-                if(numTok <3){
+                if(numTok !=5){
                     Error();
                     continue;
                 }
+                
             }
 
             else {
-                printf("%s",ptr[1]);
                 Error();
             }
         }

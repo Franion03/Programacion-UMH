@@ -133,9 +133,9 @@ int FechaValida(char *cadena)
 
   
   
-  	a=(cadena[0]-'0')*1000 +(cadena[1]-'0')*100+(cadena[2]-'0')*10+ (cadena[3]-'0');
-    m=(cadena[5]-'0')*10 +(cadena[6]-'0');
-    d=(cadena[8]-'0')*10 +(cadena[9]-'0');
+  	a=(cadena[6]-'0')*1000 +(cadena[7]-'0')*100+(cadena[8]-'0')*10+ (cadena[9]-'0');
+    m=(cadena[3]-'0')*10 +(cadena[4]-'0');
+    d=(cadena[0]-'0')*10 +(cadena[1]-'0');
     
    error=0;
    for (i=0; i<10; i++)
@@ -200,6 +200,7 @@ void Numeros(char*file, char*sep){
                     numReal++;
                 }
             }
+            //si no es negativo asumimos que es positivo y hacemos las mismas comprobaciones
             else {
                 for(i=0;i<strlen(p);i++){
                     if((p[i] < '0' || p[i] > '9') && p[i] != '.'){
@@ -222,5 +223,32 @@ void Numeros(char*file, char*sep){
             p=strtok(NULL,sep);
         }
     }
+    fclose(f);
     printf("Existen %i numeros negativos, %i numeros positivos, %i numeros enteros , %i numeros reales \n",numNeg,numPos,numEnt,numReal);
+}
+
+void BuscarFechas(char *file, char *sep){
+    FILE*f=fopen(file,"r");
+    char linea[10000];
+    int nfechas=0;
+    char *p;
+
+    if(f==NULL){
+        printf("Error, no se ha especificado fichero\n");
+        fclose(f);
+        return ;
+    }
+
+    while (!feof(f)){
+        fgets(linea,10000,f);
+        p=strtok(linea,sep);
+        while(p!=NULL){
+            if(FechaValida(p)==1){
+                nfechas++;
+            }
+            p=strtok(NULL,sep);
+        }
+    }
+    fclose(f);
+    printf("existen %i fechas validas para el formato:DD/MM/AAAA \n",nfechas);
 }
