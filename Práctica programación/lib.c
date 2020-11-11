@@ -275,7 +275,10 @@ void ReemplazarDatos(char *file,char *palabra1, char *palabra2, char *sep){
     if(1==0){
         n=atoi(numero);
         n=n++;
-       // nuevof=strcat("()");
+
+       nuevof=strcat(file,"(");
+       strcat(nuevof,itoa(n,numero,10));
+       strcat(nuevof,")");
     }
     else strcpy(nuevof,strcat(file,"(1)"));
     //Creamos el nuevo fichero y lo recorremos con las palabras para encontrar la deseada
