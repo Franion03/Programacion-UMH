@@ -14,7 +14,7 @@ int FechaValida(char *cadena);//devuelve 1 si la fecha es válidaw
 void Numeros(char *file, char *sep);
 void BuscarFechas(char *file, char *sep);
 void ReemplazarDatos(char *file,char *palabra1, char *palabra2, char *sep);
-
+void Reemplazar(char*linea,char*palabra1,char*palabra2);
 
 
 
