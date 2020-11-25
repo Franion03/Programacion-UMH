@@ -262,6 +262,7 @@ void ReemplazarDatos(char *file,char *palabra1, char *palabra2, char *sep){
     FILE *f=fopen(file,"r");
     char linea[10000];
     char *p;
+    int contador=0;
 
     if(f==NULL){
         printf("Error, no se ha especificado fichero\n");
@@ -269,16 +270,16 @@ void ReemplazarDatos(char *file,char *palabra1, char *palabra2, char *sep){
         return ;
     }
     //Comprobamos el nombre del fichero si el último grupo de carcteres es (numero) se cambia por numero++
-    char*nuevof="Hey.txt";
-    char*extension;
-    char*nombre;
-    int n=1,numCambios;
-    /*p=strstr(file,".");
+    char nuevof[1000];
+    char extension[100];
+    char nombre[1000];
+    int n=1;
+    p=strstr(file,".");
     strcpy(extension,p);
-    strncpy(nombre,nuevof,p-file);
 
-    while(p!=NULL){
-        p=strstr(p+1,".");
+    strncpy(nombre,file,p-file);
+    nombre[p-file]='\0';
+    while((p=strstr(p+1,"."))!=NULL){
         strcpy(extension,p);
         strncpy(nombre,file,p-file);
     }
@@ -289,14 +290,14 @@ void ReemplazarDatos(char *file,char *palabra1, char *palabra2, char *sep){
         n++;
         sprintf(nuevof,"%s_new(%d)%s",nombre,n,extension);
         fn=fopen(nuevof,"r");
-    }*/
-    FILE *fn=fopen(nuevof,"w");
+    }
+    fn=fopen(nuevof,"w");
     
     while(!feof(f)){
         fgets(linea,10000,f);
         Trim(linea);
-        Reemplazar(linea,palabra1,palabra2);
-        fprintf(fn,"%s\n",nombre);
+        contador=contador+Reemplazar(linea,palabra1,palabra2);
+        fprintf(fn,"%s\n",linea);
     }
     //Creamos el nuevo fichero y lo recorremos con las palabras para encontrar la deseada
     /*while(!feof(f)){
@@ -315,30 +316,35 @@ void ReemplazarDatos(char *file,char *palabra1, char *palabra2, char *sep){
     }*/
     fclose(f);
     fclose(fn);
-    printf("la palabra %s se ha cambiado por %s , %i veces\n",palabra1,palabra2,numCambios);
+    printf("la palabra %s se ha cambiado por %s , %i veces\n",palabra1,palabra2,contador);
 }
 
-void Reemplazar(char*linea,char*palabra1,char*palabra2){
+int Reemplazar(char*linea,char*palabra1,char*palabra2){
     int nPalabra1=strlen(palabra1);
     int npalabra2=strlen(palabra2);
     char*p=strstr(linea,palabra1);
     char*paux;
     char linea2[10000];
     char aux[10000];
-    strncpy(linea2,linea,p-linea);
-    printf("he llegado");
-    paux=p;
-    strcat(linea2,palabra2);
-    p=strstr(p+nPalabra1,palabra1);
-    printf("he llegado");
-    while(p!=0){
-        strncpy(aux,paux,p-paux);
-        strcat(linea2,aux);
-        strcat(linea2,palabra2);
-        paux=p;
-        p=strstr(p+nPalabra1,palabra1);
+    int contador=0;
+    if(p!=NULL) {
+        strncpy(linea2,linea,p-linea);
+        linea2[p-linea]='\0';
+        paux=p+nPalabra1;
+        strcat(linea2,palabra2); 
+        contador++;
+        while((p=strstr(p+nPalabra1,palabra1))!=0){
+            strncpy(aux,paux,p-paux);
+            aux[p-aux]='\0';
+            strcat(linea2,aux);
+            strcat(linea2,palabra2);
+            paux=p+nPalabra1;
+            contador++;
+        }
     }
+    else return 0;
     strcat(linea2,paux);
     strcpy(linea,linea2);
+    return contador;
 }
 
