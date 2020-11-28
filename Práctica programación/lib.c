@@ -134,7 +134,8 @@ int FechaValida(char *cadena)
   int i, d, m, a;
   int error;
 
-  
+    if(cadena == NULL || strlen(cadena) != 10)
+    return 0;
   
   	a=(cadena[6]-'0')*1000 +(cadena[7]-'0')*100+(cadena[8]-'0')*10+ (cadena[9]-'0');
     m=(cadena[3]-'0')*10 +(cadena[4]-'0');
@@ -143,16 +144,20 @@ int FechaValida(char *cadena)
    error=0;
    for (i=0; i<10; i++)
     {
-        if(i!=4 && i!=7)
-        {
-            if ((cadena[i]<'0' || cadena [i]>'9') && cadena[i]!='/' /*|| cadena[i]!='-')*/)
-            error=1;
+        if(i==2 || i==5){
+
+            if(cadena[i] != '/')
+                return 0;
+        }
+        else{
+
+            if(cadena[i] < '0' || cadena[i] > '9')
+                return 0;
         }
 
     }
-    if (error==1)
-       return 0;
-    else if (strlen(cadena)!=10)
+
+    if (strlen(cadena)!=10)
        return 0;
     else if(d<1 || m<1 || a<1 || d>31 || m>12 || a>9999 )
        return 0;
@@ -348,3 +353,4 @@ int Reemplazar(char*linea,char*palabra1,char*palabra2){
     return contador;
 }
 
+int validar

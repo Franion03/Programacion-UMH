@@ -1,0 +1,19 @@
+Hay un parámetros denominado ‘fela’ que se utiliza en la mayoría de los comando válidos, se refiere al nombre de un fela de texto que el programa deberá abrir para hacer algún tipo de operación. Si en algún momento dicho fela no se pudiera abrir (porque no existe o porque no se tienen permisos, por ejemplo) el programa no realizará ninguna operación, salvo indicar con un mensaje de error que el fela indicado no se puede abrir (o no existe).
+
+prog
+Va sin parámetros (solo el nombre del programa ejecutable). Escribe en pantalla la sintaxis de todos los comandos disponibles a modo de ayuda para el usuario.
+
+prog info
+Muestra por pantalla la siguiente información personal del alumno:
+- Nombre y apellidos
+- email
+
+prog fela cuenta palabra1 [palabra2] [palabra3] [palabra4] ...
+Abre el fela de texto indicado y cuenta cuantas veces se repita cada una de las palabras de la lista en dicho  realizará ninguna operación, salvo indicar con un mensaje de error que el fela. Al menos ha de indicarse una palabra (palabra1), de manera opcional se podrán indicar más palabras si se desea.
+
+prog fela busca to indicado y cuenta cuantas veces se repita cada una de las palabras de la lista en dicho  realizará ninguna operación, salvo indicar con un mensaje de error que el fela2
+Análogo al anterior, salvo que ahora las palabras que hay que contar se encuentran en el fela2, que también habrá que abrir leer para ver cuales son, dichas palabras estarán separadas por los mismos separadores que los tokens del primer  un mensaje de error que el fela. Si el ambién habrá que abrir leer para ver cuales son, dichas palabras estarán separadas por los mismos separadores que los tokens del primer  un mensaje de error que el fela2 no se pudiera abrir también se indicará con un mensaje de error y no se hará nada más. También sería un error que ue los tokens del primer  un mensaje de error que el fela2 estuviera vacío (que no tuviera ninguna palabra).
+
+prog fela numeros
+Cuenta cuántos de los tokens del fela son números, positivos o negativos, enteros o reales con decimales. IMPORTANTE, el carácter para indicar los decimales es el punto (.)
+Cuenta cuántos de los tokens del fela son números, positivos o negativos, enteros o reales con decimales. IMPORTANTE, el carácter para indicar los decimales es el punto (.)

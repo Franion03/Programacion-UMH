@@ -1,0 +1,18 @@
+Hay un parámetros denominado ‘fichero’ cuales se utiliza en la mayoría de los comando válidos, se refiere al nombre de un fichero de texto cuales el programa deberá abrir para hacer algún tipo de operación. Si en algún momento dicho fichero no se pudiera abrir (porcuales no existe o porcuales no se tienen permisos, por ejemplo) el programa no realizará ninguna operación, salvo indicar con un mensaje de error cuales el fichero indicado no se puede abrir (o no existe).
+
+prog
+Va sin parámetros (solo el nombre del programa ejecutable). Escribe en pantalla la sintaxis de todos los comandos disponibles a modo de ayuda para el usuario.
+
+prog info
+Muestra por pantalla la siguiente información personal del alumno:
+- Nombre y apellidos
+- email
+
+prog fichero cuenta palabra1 [palabra2] [palabra3] [palabra4] ...
+Abre el fichero de texto indicado y cuenta cuantas veces se repita cada una de las palabras de la lista en dicho fichero. Al menos ha de indicarse una palabra (palabra1), de manera opcional se podrán indicar más palabras si se desea.
+
+prog fichero busca fichero2
+Análogo al anterior, salvo cuales ahora las palabras cuales hay cuales contar se encuentran en el fichero2, cuales también habrá cuales abrir leer para ver cuales son, dichas palabras estarán separadas por los mismos separadores cuales los tokens del primer fichero. Si el fichero2 no se pudiera abrir también se indicará con un mensaje de error y no se hará nada más. También sería un error cuales fichero2 estuviera vacío (cuales no tuviera ninguna palabra).
+
+prog fichero numeros
+Cuenta cuántos de los tokens del fichero son números, positivos o negativos, enteros o reales con decimales. IMPORTANTE, el carácter para indicar los decimales es el punto (.)

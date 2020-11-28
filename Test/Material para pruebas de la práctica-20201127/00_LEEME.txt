@@ -1,0 +1,79 @@
+Algunas pruebas que se pueden hacer con el fichero "texto1.txt"
+(se asume que el ejecutable se llama prog (o prog.exe)
+===============================================================
+
+1) El siguiente comando:
+	prog texto1.txt cuenta el que lunes palabra fichero
+
+Genera la siguiente salida:
+	Resultado 'CUENTA':
+	'el': 10
+	'que': 11
+	'lunes': 0
+	'palabra': 2
+	'fichero': 10
+	FIN
+
+2) El siguiente comando:
+	prog texto1.txt busca palabras.csv
+
+Genera el mismo resultado que el comando anterior
+cambiando "Resultado 'CUENTA'" por "Resultado 'BUSCA'"
+
+
+3) Algunos ejemplos de números correctos e incorrectos, se pueden
+incorporar al fichero "texto1.txt" (o a otro) y probar
+
+		Num correctos		Num Incorrectos
+		12					--12
+		+98					+-33
+		-34					-3r5
+		.56					0..56
+		-7.4				7.4-
+		45.					"25"
+		823634849.72376236	82363.4849.72376236
+
+Si se incluyen todos esos números en el fichero, el comando siguiente:
+	prog texto1.txt numeros
+
+Genera la siguiente salida:
+	Resultado 'NUMEROS':
+	Total numeros encontrados = 7
+	FIN
+
+4) Algunos ejemplos de fechas correctas e incorrectas, se pueden
+incorporar al fichero "texto1.txt" (o a otro) y probar
+
+		Fechas OK			Fechas Incorrectas
+		12/07/2021			12/00/2021
+		29/02/2020			29/02/2021
+		31/01/2000			31/04/2000
+		01/01/0001			01/1/0001
+		01/02/0001			1/02/0001
+		01/01/0999			01/01/999
+		07/09/2005			+7/09/2005
+		20/10/2002			2//10/2002
+		15/11/1999			15/1:/1999
+		31/03/2009			32/03/2009
+		25/09/1999			32/03/19.9
+
+Si se incluyen todas esas fechas en el fichero, el comando siguiente:
+	prog texto1.txt fechas
+
+Genera la siguiente salida:
+	Resultado 'FECHAS':
+	Total fechas encontradas = 11
+	FIN
+
+5) Los dos comando siguientes ejecutados consecutivamente uno tras otro:
+(con el fichero "texto1.txt" original sin añadir ni quitar nada)
+	prog texto1.txt remplazar palabra cadena
+	prog texto1.txt remplazar que cuales
+
+Genera los ficheros siguientes:
+	texto1_new.txt
+	texto1_new(2).txt
+
+MUY IMPORTANTE: Cada comando, al finalizar, tanto si se ejecuta correctamente
+como si da un mensaje de error, deberá imprimir el texto "FIN\n"
+
