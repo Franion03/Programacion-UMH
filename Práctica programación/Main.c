@@ -98,11 +98,6 @@ int main(int argc, char* argv[]){
                 
             }
 
-            else if(strcmp(argv[2], "buscar")==0){
-
-                OrdenarNumeros(argv[1],sepn);
-                
-            }
 
             else {
                 Error();

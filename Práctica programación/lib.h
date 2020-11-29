@@ -26,6 +26,10 @@ void quicksort(int *V,int *O, int izq, int der);
 int seleccionar_pivote(int *V, int izq, int der);
 void intercambiar(int *V, int izq, int der);
 void OrdenarNumeros(char*file, char*sep);
+void cuentaSuf(char *nomFich, int nPal, char *palabras[] ,char*sep);
+int buscaPref(char *palabras, int nPal, FILE *f ,char*sep);
+void cuentaPref(char *nomFich, int nPal, char *palabras[] ,char*sep);
+int buscaSuf(char *palabras, int nPal, FILE *f ,char*sep);
 
 
 

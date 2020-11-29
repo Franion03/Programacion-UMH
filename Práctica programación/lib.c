@@ -727,7 +727,7 @@ int buscaPref(char *palabras, int nPal, FILE *f ,char*sep)
     return cuenta;
 }
 
-void cuentaPref(char *nomFich, int nPal, char *palabras[])
+void cuentaPref(char *nomFich, int nPal, char *palabras[] ,char*sep)
 {
     int i;
     FILE *f = fopen(nomFich,"r");
@@ -742,7 +742,7 @@ void cuentaPref(char *nomFich, int nPal, char *palabras[])
 	{
    		for ( i = 0; i < nPal; i++)
    		{
-       		printf("'%s' : %d  \n", palabras[i], buscaPref( palabras[i], MAX, f,sep));
+       		printf("'%s' : %d  \n", palabras[i], buscaPref( palabras[i], nPal, f,sep));
        		rewind(f);
    		}
 	}
@@ -810,7 +810,7 @@ void cuentaSuf(char *nomFich, int nPal, char *palabras[] ,char*sep)
 	{
    		for ( i = 0; i < nPal; i++)
    		{
-       		printf("'%s' : %d  \n", palabras[i], buscaSuf( palabras[i], MAX, f,sep));
+       		printf("'%s' : %d  \n", palabras[i], buscaSuf( palabras[i], nPal, f,sep));
        		rewind(f);
    		}    
 	}
