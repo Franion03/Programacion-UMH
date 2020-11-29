@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <locale.h>
+#include <ctype.h>
 
 #include "lib.h"
 
@@ -93,6 +95,12 @@ int main(int argc, char* argv[]){
                     return 0;;
                 }
             ReemplazarDatos(argv[1],argv[3],argv[4],sepf);
+                
+            }
+
+            else if(strcmp(argv[2], "buscar")==0){
+
+                OrdenarNumeros(argv[1],sepn);
                 
             }
 
